@@ -20,6 +20,8 @@ resource "aws_instance" "public-ec2" {
 #!/bin/sh
 sudo apt-get update
 sudo apt-get install -y nginx
+sudo apt-get install -y net-tools
+sudo service nginx start
 EOF
 
 
@@ -63,6 +65,14 @@ resource "aws_security_group" "ec2-sg" {
     to_port     = 22
     cidr_blocks = ["100.14.26.43/32"]
   }
+
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
 
   ingress {
     from_port   = 443
