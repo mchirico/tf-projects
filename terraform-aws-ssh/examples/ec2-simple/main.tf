@@ -1,8 +1,20 @@
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 3.0"
+    }
+  }
+}
 
+# Configure the AWS Provider
+provider "aws" {
+  region = "us-east-1"
+}
 
 module "vpc" {
   source       = "../../modules/vpc-simple"
-  vpc_name     = "terra-vpc"
+  vpc_name     = "terra-simple-vpc"
   vpc_cidr     = "192.168.0.0/16"
   public_cidr  = "192.168.1.0/24"
   private_cidr = "192.168.2.0/24"
@@ -26,7 +38,7 @@ EOF
 
 
   tags = {
-    Name = "ec2-main"
+    Name = "ec2-nginx"
   }
 
   depends_on = [module.vpc.vpc_id, module.vpc.igw_id]
