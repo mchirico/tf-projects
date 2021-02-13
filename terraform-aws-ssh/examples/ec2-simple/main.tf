@@ -53,8 +53,8 @@ EOF
 //}
 
 resource "aws_security_group" "ec2-sg" {
-  name        = "security-group"
-  description = "allow inbound access to the Application task from NGINX"
+  name        = "security-group-terraform"
+  description = "allow select inbound access to the Application"
   vpc_id      = module.vpc.vpc_id
 
   ingress {

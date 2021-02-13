@@ -1,7 +1,7 @@
 resource "aws_vpc" "main" {
-  cidr_block       = var.vpc_cidr
-  instance_tenancy = var.tenancy
-  enable_dns_support = var.enable_dns_support
+  cidr_block           = var.vpc_cidr
+  instance_tenancy     = var.tenancy
+  enable_dns_support   = var.enable_dns_support
   enable_dns_hostnames = var.enable_dns_hostnames
 
   tags = {
@@ -13,7 +13,7 @@ resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.main.id
 
   tags = {
-    Name =  "${var.vpc_name}-IGW"
+    Name = "${var.vpc_name}-IGW"
   }
 }
 
@@ -46,7 +46,7 @@ resource "aws_eip" "gw" {
   depends_on = [aws_internet_gateway.igw]
 
   tags = {
-    Name =  "${var.vpc_name}-EIP"
+    Name = "${var.vpc_name}-EIP"
   }
 }
 
@@ -55,7 +55,7 @@ resource "aws_nat_gateway" "gw" {
   allocation_id = aws_eip.gw.id
 
   tags = {
-    Name =  "${var.vpc_name}-NAT"
+    Name = "${var.vpc_name}-NAT"
   }
 }
 
@@ -68,7 +68,7 @@ resource "aws_route_table" "private" {
   }
 
   tags = {
-    Name =  "${var.vpc_name}-rt-private"
+    Name = "${var.vpc_name}-rt-private"
   }
 }
 
