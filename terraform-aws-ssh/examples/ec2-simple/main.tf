@@ -57,9 +57,9 @@ resource "aws_security_group" "ec2-sg" {
   vpc_id      = module.vpc.vpc_id
 
   ingress {
-    protocol    = "-1"
+    protocol    = "TCP"
     from_port   = 0
-    to_port     = 0
+    to_port     = 22
     cidr_blocks = ["100.14.26.43/32"]
   }
 
