@@ -12,18 +12,11 @@ provider "aws" {
   region = "us-east-1"
 }
 
-module "vpc" {
-  source       = "../../modules/vpc-simple"
-  vpc_name     = "terra-simple-vpc"
-  vpc_cidr     = "192.168.0.0/16"
-  public_cidr  = "192.168.1.0/24"
-  private_cidr = "192.168.2.0/24"
-}
+
 
 resource "aws_instance" "public-ec2" {
   ami                         = var.ami_id
   instance_type               = var.instance_type
-  subnet_id                   = module.vpc.subnet_public_id
   key_name                    = "rommel"
   vpc_security_group_ids      = [aws_security_group.ec2-sg.id]
   associate_public_ip_address = true
@@ -41,35 +34,13 @@ EOF
     Name = "ec2-nginx"
   }
 
-  depends_on = [module.vpc.vpc_id, module.vpc.igw_id]
 }
 
-
-//resource "aws_instance" "private-ec2" {
-//  ami                         = var.ami_id
-//  instance_type               = var.instance_type
-//  subnet_id                   = module.vpc.subnet_private_id
-//  key_name                    = "rommel"
-//  vpc_security_group_ids      = [aws_security_group.ec2-sg.id]
-//  associate_public_ip_address = false
-//
-//  tags = {
-//    Name = "ec2-main-private"
-//  }
-//
-//  depends_on = [module.vpc.vpc_id, module.vpc.igw_id]
-//
-//  user_data = <<EOF
-//#!/bin/sh
-//sudo apt-get update
-//sudo apt-get install -y mysql-server
-//EOF
-//}
 
 resource "aws_security_group" "ec2-sg" {
   name        = "security-group-terraform"
   description = "allow select inbound access to the Application"
-  vpc_id      = module.vpc.vpc_id
+
 
   ingress {
     protocol    = "tcp"
