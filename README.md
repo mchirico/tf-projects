@@ -11,6 +11,7 @@ terraform apply
 
 ```
 
+But will use `m1Virginia.pem`
 
 
 
