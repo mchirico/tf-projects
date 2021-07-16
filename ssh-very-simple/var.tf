@@ -7,7 +7,7 @@ variable "public_access_ip_range" {
 }
 
 variable "ssh_key_name" {
-  default = "rommel-rsa"
+  default = "m1Virginia"
 }
 
 

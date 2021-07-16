@@ -1,6 +1,6 @@
 
 output "ec2-public-dns" {
-  value = "\n      ssh -i ~/.ssh/rommel.pem ubuntu@${aws_instance.public-ec2.public_dns}\n      ssh  ubuntu@${aws_instance.public-ec2.public_dns}\n\n"
+  value = "\n      ssh -i ~/.ssh/m1Virginia.pem ubuntu@${aws_instance.public-ec2.public_dns}\n      ssh  ubuntu@${aws_instance.public-ec2.public_dns}\n\n"
 }
 
 output "ec2-public-ip" {
