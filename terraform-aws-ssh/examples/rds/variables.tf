@@ -1,6 +1,6 @@
 
 variable "aws_region" {
-    default = "us-west-2"
+    default = "us-east-1"
 }
 
 
@@ -9,8 +9,8 @@ variable "ec2_count" {
 }
 
 variable "ami_id" {
-    // Ubuntu Server 18.04 LTS (HVM), SSD Volume Type in us-west-2 
-    default = "ami-0d1cd67c26f5fca19"
+    // Amazon Linux 2
+    default = "ami-0dc2d3e4c0f9ebd18"
 }
 
 variable "instance_type" {
