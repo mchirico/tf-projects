@@ -1,6 +1,11 @@
 # tf-projects
 Terraform Projects
 
+References:
+
+[vpc](https://github.com/terraform-aws-modules/terraform-aws-vpc/tree/v3.2.0)
+
+
 If you need to create VPC for EKS instance, run the following:
 
 ```bash
