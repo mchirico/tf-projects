@@ -16,7 +16,7 @@ terraform apply
 
 ```
 
-But will use `m1Virginia.pem`
+But the above will use `m1Virginia.pem`
 
 
 
